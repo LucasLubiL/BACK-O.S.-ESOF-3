@@ -6,12 +6,12 @@ class Usuario {
     private _idFuncionario: number;
     private _funcao: string;
 
-    constructor(id: number, usuario: string, senha: string, idFuncionario: number, funcao:string) {
-        this._id = id;
-        this._usuario = usuario;
-        this._senha = senha;
-        this._idFuncionario = idFuncionario;
-        this._funcao = funcao;
+    constructor(id?: number, usuario?: string, senha?: string, idFuncionario?: number, funcao?:string) {
+        this._id = id ?? 0;
+        this._usuario = usuario ?? "";
+        this._senha = senha ?? "";
+        this._idFuncionario = idFuncionario ?? 0;
+        this._funcao = funcao ?? "";
     }
 
     public get id(): number {

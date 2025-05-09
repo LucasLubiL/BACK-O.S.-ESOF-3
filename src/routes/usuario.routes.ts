@@ -3,6 +3,10 @@ import UsuarioController from "../controllers/UsuarioController";
 
 const router = express.Router();
 
-router.post("/login", UsuarioController.login);
+const usuarioController = new UsuarioController();
+
+router.post("/login", usuarioController.login);
+
+router.post("/cadastrarUser", usuarioController.cadastrar);
 
 export default router;

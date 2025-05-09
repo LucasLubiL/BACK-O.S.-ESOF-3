@@ -3,6 +3,24 @@ import Funcionario from "../models/Funcionario";
 
 class FuncionarioDAO {
 
+    async verificar(cpf: string): Promise<boolean> {
+
+        try{
+
+           const query = `SELECT * FROM funcionario WHERE cpf = $1`;
+
+           const result = await pool.query(query, [cpf]);
+
+           return result.rows.length > 0;
+
+        } catch (error) {
+            console.error("Erro ao buscar funcionário no banco:", error);
+            return false;
+        }
+
+
+    }
+
     async cadastrar(funcionario: Funcionario): Promise<boolean> {
 
         try {
@@ -40,6 +58,20 @@ class FuncionarioDAO {
             return false;
         }
         
+    }
+
+    async listarSelect(){
+
+        try{
+
+            const query = `SELECT idfunc, nome FROM funcionario ORDER BY nome ASC`;
+            const result = await pool.query(query);
+            return result.rows;
+
+        }catch (error) {
+            console.error("Erro ao buscar funcionário no banco para o select do usuario:", error);
+            return false;
+        }
     }
 
 }

@@ -21,8 +21,6 @@ class FuncionarioController {
       funcionarioData.salario
     );
 
-    console.log("funcionario controller rodando");
-
     const resultado = await funcionarioBO.cadastrar(funcionario);
 
     if (resultado) {
@@ -35,6 +33,20 @@ class FuncionarioController {
       
     }
     
+  }
+
+  async listarSelect(req: Request, res: Response){
+
+    const funcionarioBO = new FuncionarioBO();
+
+    const funcionarios = await funcionarioBO.listarSelect();
+
+    if (funcionarios) {
+       res.status(200).json(funcionarios);
+    }else {
+       res.status(500).json({ error: "Erro ao listar funcionários" });
+    }
+
   }
 
 }

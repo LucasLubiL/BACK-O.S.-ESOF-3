@@ -2,7 +2,8 @@ import express, { Request, Response } from 'express';
 import cors from 'cors';
 import usuarioRoutes from './routes/usuario.routes';
 import funcionarioRoutes from './routes/funcionario.routes';
-import client from './config/database'; // Importa a conexão com o banco
+import clienteRoutes from './routes/cliente.routes';
+import client from './config/database';
 
 console.log("✅ Servidor carregado corretamente");
 
@@ -27,10 +28,9 @@ client.connect()
 // Rotas principais do sistema
 app.use('/usuarios', usuarioRoutes);
 app.use('/funcionario', funcionarioRoutes);
+app.use('/cliente', clienteRoutes);
 
-console.log("funcionario server rodando");
-
-app.get('/test', (req: Request, res: Response) => {
+app.get('/testeee', (req: Request, res: Response) => {
   res.send('Servidor está funcionando!');
 });
 

@@ -13,8 +13,18 @@ class FuncionarioBO {
 
     async cadastrar(funcionario: Funcionario): Promise<boolean> {
 
+      const verific = await this.funcionarioDAO.verificar(funcionario.cpf);
+
+      if(verific){
+          return false;
+      }
+
       return await this.funcionarioDAO.cadastrar(funcionario);
       
+    }
+
+    async listarSelect(){7
+      return await this.funcionarioDAO.listarSelect();
     }
 
 }

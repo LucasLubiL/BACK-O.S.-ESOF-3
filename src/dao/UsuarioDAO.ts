@@ -2,6 +2,7 @@ import pool from "../config/database";
 import Usuario from "../models/Usuario";
 
 class UsuarioDAO {
+
     async buscarPorUsuarioESenha(usuario: string, senha: string): Promise<Usuario | null> {
 
         try{
@@ -30,6 +31,37 @@ class UsuarioDAO {
         
         return null;
     }
+
+    async cadastrarUsuario(user: Usuario): Promise<boolean> {
+
+        try{
+
+            const query = "INSERT INTO usuario(usuario,senha,idfunc) values($1, $2, $3) RETURNING iduser";
+            const values = [user.usuario, user.senha, user.idFuncionario];
+            
+            console.log("Executando INSERT com:", values);
+
+            const result = await pool.query(query, values);
+
+            if (result && result.rows && result.rows[0]) {
+
+                console.log(`Usuário cadastrado com sucesso! ID: ${result.rows[0].idfunc}`);
+                return true;
+
+            } else {
+
+                console.error("Erro: Nenhum dado foi inserido.");
+                return false;
+
+            }
+
+        }catch (error) {
+            console.error("Erro ao cadastrar usuário no banco:", error);
+            return false;
+        }
+
+    }
+
 }
 
 export default UsuarioDAO;
