@@ -57,6 +57,20 @@ class ClienteDAO {
         
     }
 
+    async listarSelect(){
+
+        try{
+
+            const query = `SELECT idcliente, nome FROM cliente ORDER BY idcliente`;
+            const result = await pool.query(query);
+            return result.rows;
+
+        }catch (error) {
+            console.error("Erro ao buscar cliente no banco para o select da ordem:", error);
+            return false;
+        }
+    }
+
 }
 
 export default ClienteDAO;

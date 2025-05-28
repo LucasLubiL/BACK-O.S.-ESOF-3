@@ -64,7 +64,7 @@ class FuncionarioDAO {
 
         try{
 
-            const query = `SELECT idfunc, nome FROM funcionario ORDER BY nome ASC`;
+            const query = `SELECT idfunc, nome FROM funcionario ORDER BY idfunc`;
             const result = await pool.query(query);
             return result.rows;
 

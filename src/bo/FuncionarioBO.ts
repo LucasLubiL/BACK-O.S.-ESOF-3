@@ -23,7 +23,7 @@ class FuncionarioBO {
       
     }
 
-    async listarSelect(){7
+    async listarSelect(){
       return await this.funcionarioDAO.listarSelect();
     }
 

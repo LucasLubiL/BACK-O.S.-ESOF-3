@@ -19,6 +19,12 @@ class UsuarioBO {
 
     async cadastrar(user: Usuario): Promise<boolean> {
         
+        const verific = await this.usuarioDAO.verificar(user.idFuncionario);
+       
+        if(verific){
+            return false;
+        }
+
         return await this.usuarioDAO.cadastrarUsuario(user);
 
     }

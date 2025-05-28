@@ -18,7 +18,8 @@ class FuncionarioController {
       funcionarioData.cidade,
       funcionarioData.estado,
       funcionarioData.funcao,
-      funcionarioData.salario
+      funcionarioData.salario,
+      funcionarioData.usuario
     );
 
     const resultado = await funcionarioBO.cadastrar(funcionario);

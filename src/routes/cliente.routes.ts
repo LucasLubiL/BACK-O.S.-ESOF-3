@@ -7,4 +7,6 @@ const clienteController = new ClienteController();
 
 router.post("/cadastrarCliente", clienteController.cadastrar);
 
+router.get("/select", clienteController.listarSelect);
+
 export default router;

@@ -12,6 +12,9 @@ class UsuarioController {
 
         if (usuarioEncontrado) {
 
+            req.session.funcionarioId = usuarioEncontrado.idFuncionario;
+            req.session.funcionarioNome = usuarioEncontrado.usuario;
+
             res.status(200).json(usuarioEncontrado);  // Envia os dados do usuário de volta ao frontend
        
         } else {
