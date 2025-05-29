@@ -5,7 +5,7 @@ const router = express.Router();
 
 const servicoController = new ServicoController();
 
-router.post("/cadastrar", servicoController.cadastrar);
+router.post("/cadastrarServico", servicoController.cadastrar);
 
 router.get("/select", servicoController.listarSelect);
 

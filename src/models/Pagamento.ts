@@ -1,14 +1,14 @@
 class Pagamento{
 
-    private _id: number;
+    private _id?: number;
     private _nome: string;
 
-    constructor(id: number, nome: string){
-        this._id = id;
+    constructor(nome: string, id?: number){
+        if(id) this._id = id;
         this._nome = nome;
     }
     
-    public get id(): number{
+    public get id(): number | undefined{
         return this._id;
     }
 

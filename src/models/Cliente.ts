@@ -9,7 +9,7 @@ class Cliente {
     private _estado: string;
   
     constructor(nome: string, cpf: string, data_nascimento: Date, endereco: string, cidade: string, estado: string, id?: number){
-        if(id) this._id = id;
+        this._id = id;
         this._nome = nome;
         this._cpf = cpf;
         this._data_nascimento = data_nascimento;

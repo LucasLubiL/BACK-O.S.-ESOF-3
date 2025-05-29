@@ -57,11 +57,61 @@ class ClienteDAO {
         
     }
 
+    async atualizar(cliente: Cliente): Promise<boolean> {
+
+        try {
+
+            const query = `UPDATE cliente SET nome = $1, cpf = $2, data_nascimento = $3, endereco = $4, cidade = $5, estado = $6 WHERE idcliente = $7`;
+            const values = [
+                cliente.nome,
+                cliente.cpf,
+                cliente.data_nascimento,
+                cliente.endereco,
+                cliente.cidade,
+                cliente.estado,
+                cliente.id
+            ];
+
+            console.log("Executando UPDATE com:", values);
+
+            await pool.query(query, values);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao atualizar cliente no banco:", error);
+            return false;
+        }
+        
+    }
+
+    async excluir(id: number): Promise<boolean> {
+
+        try {
+
+            const query = `DELETE FROM cliente WHERE idcliente = $1`;
+            const values = [
+                id
+            ];
+
+            console.log("Executando DELETE com:", values);
+
+            await pool.query(query, values);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao excluir cliente no banco:", error);
+            return false;
+        }
+        
+    }
+
     async listarSelect(){
 
         try{
 
-            const query = `SELECT idcliente, nome FROM cliente ORDER BY idcliente`;
+            const query = `SELECT * FROM cliente ORDER BY idcliente`;
             const result = await pool.query(query);
             return result.rows;
 

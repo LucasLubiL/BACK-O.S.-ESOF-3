@@ -22,8 +22,20 @@ class ClienteBO {
       return await this.clienteDAO.cadastrar(cliente);
       
    }
+
+   async excluir(id: number): Promise<boolean> {
+
+      return await this.clienteDAO.excluir(id);
+      
+   }
+
+   async atualizar(cliente: Cliente): Promise<boolean> {
+
+      return await this.clienteDAO.atualizar(cliente);
+      
+   }
    
-   async listarSelect(){7
+   async listarSelect(){
       return await this.clienteDAO.listarSelect();
    }
 

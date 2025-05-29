@@ -12,10 +12,19 @@ class ServicoBO {
     }
 
     async cadastrar(servico: Servico): Promise<boolean> {
-      return true
+     
+      const verific = await this.servicoDAO.verificar(servico.nomeServico);
+
+      if(verific){
+        return false;
+      }
+      
+      return await this.servicoDAO.cadastrar(servico);
+
+
     }
 
-    async listarSelect(){7
+    async listarSelect(){
       return await this.servicoDAO.listarSelect();
     }
 

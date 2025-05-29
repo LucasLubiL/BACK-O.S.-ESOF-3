@@ -7,6 +7,10 @@ const clienteController = new ClienteController();
 
 router.post("/cadastrarCliente", clienteController.cadastrar);
 
+router.post("/atualizarCliente", clienteController.atualizar);
+
+router.post("/excluirCliente", clienteController.excluir);
+
 router.get("/select", clienteController.listarSelect);
 
 export default router;

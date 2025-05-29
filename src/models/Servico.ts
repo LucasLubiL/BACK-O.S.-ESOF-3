@@ -1,14 +1,14 @@
 class Servico{
 
-    private _id: number;
+    private _id?: number;
     private _nomeServico: string;
 
-    constructor(id: number, nomeServico: string){
-        this._id = id;
+    constructor(nomeServico: string, id?: number){
+        if(id) this._id = id;
         this._nomeServico = nomeServico;
     }
 
-    public get id(): number{
+    public get id(): number | undefined{
         return this._id;
     }
 

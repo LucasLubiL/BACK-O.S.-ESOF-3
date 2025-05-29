@@ -12,10 +12,18 @@ class PagamentoBO {
     }
 
     async cadastrar(pagamento: Pagamento): Promise<boolean> {
-      return true
+
+      const verific = await this.pagamentoDAO.verificar(pagamento.nome);
+
+      if(verific){
+        return false;
+      }
+      
+      return await this.pagamentoDAO.cadastrar(pagamento);
+
     }
 
-    async listarSelect(){7
+    async listarSelect(){
       return await this.pagamentoDAO.listarSelect();
     }
 

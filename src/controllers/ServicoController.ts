@@ -6,6 +6,24 @@ class ServicoController {
 
   async cadastrar(req: Request, res: Response) {
     
+    const servicoData = req.body;
+    const servicoBO = new ServicoBO();
+    const servico = new Servico(
+        servicoData.nome
+    );
+
+    const resultado = await servicoBO.cadastrar(servico);
+
+    if (resultado) {
+
+      res.status(201).json({ message: "Serviço cadastrado com sucesso!" });
+
+    } else {
+
+      res.status(400).json({ error: "Serviço já cadastrado. Não é possível cadastrar este serviço." });
+      
+    }
+
   }
 
   async listarSelect(req: Request, res: Response){

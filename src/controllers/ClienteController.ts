@@ -31,6 +31,54 @@ class ClienteController {
     
   }
 
+  async atualizar(req: Request, res: Response) {
+
+    const clienteData = req.body;
+    const clienteBO = new ClienteBO();
+    const cliente = new Cliente(
+        clienteData.nome,
+        clienteData.cpf,
+        new Date(clienteData.data_nascimento),
+        clienteData.endereco,
+        clienteData.cidade,
+        clienteData.estado,
+        Number(clienteData.id)
+    );
+
+    const resultado = await clienteBO.atualizar(cliente);
+
+    if (resultado) {
+
+      res.status(201).json({ message: "Cliente atualizado com sucesso!" });
+
+    } else {
+
+      res.status(400).json({ error: "Não é possível atualizar este cliente." });
+      
+    }
+    
+  }
+
+  async excluir(req: Request, res: Response) {
+
+    const clienteData = req.body;
+    const clienteBO = new ClienteBO();
+    const id = clienteData.id;
+
+    const resultado = await clienteBO.excluir(id);
+
+    if (resultado) {
+
+      res.status(201).json({ message: "Cliente exclúido com sucesso!" });
+
+    } else {
+
+      res.status(400).json({ error: "Não é possível excluir este cliente." });
+      
+    }
+    
+  }
+
   async listarSelect(req: Request, res: Response){
 
     const clienteBO = new ClienteBO();
