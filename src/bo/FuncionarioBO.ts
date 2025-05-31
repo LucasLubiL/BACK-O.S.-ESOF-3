@@ -23,6 +23,18 @@ class FuncionarioBO {
       
     }
 
+    async atualizar(funcionario: Funcionario): Promise<boolean> {
+
+      return await this.funcionarioDAO.atualizar(funcionario);
+      
+    }
+
+    async excluir(id: number): Promise<boolean> {
+
+      return await this.funcionarioDAO.excluir(id);
+      
+    }
+
     async listarSelect(){
       return await this.funcionarioDAO.listarSelect();
     }

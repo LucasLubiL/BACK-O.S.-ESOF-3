@@ -7,6 +7,10 @@ const pagamentoController = new PagamentoController();
 
 router.post("/cadastrarPagamento", pagamentoController.cadastrar);
 
+router.post("/atualizarPagamento", pagamentoController.atualizar);
+
+router.post("/excluirPagamento", pagamentoController.excluir);
+
 router.get("/select", pagamentoController.listarSelect);
 
 export default router;

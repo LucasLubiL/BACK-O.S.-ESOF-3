@@ -4,7 +4,7 @@ class Pagamento{
     private _nome: string;
 
     constructor(nome: string, id?: number){
-        if(id) this._id = id;
+        this._id = id;  
         this._nome = nome;
     }
     

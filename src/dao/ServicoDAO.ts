@@ -35,6 +35,48 @@ class ServicoDAO {
 
     }
 
+    async atualizar(servico: Servico): Promise<boolean> {
+
+        try {
+
+            const query = `UPDATE servico SET nome_service = $1 WHERE idservice = $2`;
+            const values = [
+                servico.nomeServico,
+                servico.id
+            ];
+
+            console.log("Executando UPDATE com:", values);
+
+            await pool.query(query, values);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao atualizar serviço no banco:", error);
+            return false;
+        }
+        
+    }
+
+    async excluir(idservice: number): Promise<boolean> {
+
+        try {
+ 
+            const query = `DELETE FROM servico WHERE idservice = $1`;
+
+            console.log("Executando DELETE com:", idservice);
+
+            await pool.query(query, [idservice]);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao excluir serviço no banco:", error);
+            return false;
+        }
+        
+    }
+
     async verificar(servico: string): Promise<boolean> {
 
         try{
@@ -56,7 +98,7 @@ class ServicoDAO {
 
         try{
 
-            const query = `SELECT idservice, nome_service FROM servico ORDER BY idservice`;
+            const query = `SELECT * FROM servico ORDER BY idservice`;
             const result = await pool.query(query);
             return result.rows;
 

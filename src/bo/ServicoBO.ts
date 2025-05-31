@@ -24,6 +24,18 @@ class ServicoBO {
 
     }
 
+    async atualizar(servico: Servico): Promise<boolean> {
+
+        return await this.servicoDAO.atualizar(servico);
+      
+    }
+
+    async excluir(idservice: number): Promise<boolean> {
+
+        return await this.servicoDAO.excluir(idservice);
+      
+    }
+
     async listarSelect(){
       return await this.servicoDAO.listarSelect();
     }

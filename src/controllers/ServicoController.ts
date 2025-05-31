@@ -26,6 +26,49 @@ class ServicoController {
 
   }
 
+  async atualizar(req: Request, res: Response) {
+
+      const servicoData = req.body;
+      const servicoBO = new ServicoBO();
+      const servico = new Servico(
+          servicoData.nome,
+          servicoData.id
+      );
+
+      const resultado = await servicoBO.atualizar(servico);
+
+      if (resultado) {
+
+      res.status(201).json({ message: "Servico atualizado com sucesso!" });
+
+      } else {
+
+      res.status(400).json({ error: "Não é possível atualizar este serviço"});
+        
+      }
+        
+  }
+
+  async excluir(req: Request, res: Response) {
+
+      const servicoData = req.body;
+      const servicoBO = new ServicoBO();
+      const idservice = servicoData.id;
+        
+      const resultado = await servicoBO.excluir(idservice);
+
+      if (resultado) {
+
+      res.status(201).json({ message: "Serviço exclúido com sucesso!" });
+
+      } else {
+
+      res.status(409).json({ error: "Não é possível excluir este serviço." });
+        
+      }
+        
+  }
+
   async listarSelect(req: Request, res: Response){
 
     const servicoBO = new ServicoBO();

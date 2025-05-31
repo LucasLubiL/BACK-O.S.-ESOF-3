@@ -36,6 +36,57 @@ class FuncionarioController {
     
   }
 
+  async atualizar(req: Request, res: Response) {
+
+    const funcionarioData = req.body;
+    const funcionarioBO = new FuncionarioBO();
+    const funcionario = new Funcionario(
+        funcionarioData.nome,
+        funcionarioData.cpf,
+        new Date(funcionarioData.data_nascimento),
+        funcionarioData.endereco,
+        funcionarioData.cidade,
+        funcionarioData.estado,
+        funcionarioData.funcao,
+        funcionarioData.salario,
+        true,
+        Number(funcionarioData.id)
+    );
+
+    const resultado = await funcionarioBO.atualizar(funcionario);
+
+    if (resultado) {
+
+      res.status(201).json({ message: "Funcionário atualizado com sucesso!" });
+
+    } else {
+
+      res.status(400).json({ error: "Não é possível atualizar este funcionário." });
+      
+    }
+    
+  }
+
+  async excluir(req: Request, res: Response) {
+
+    const funcionarioData = req.body;
+    const funcionarioBO = new FuncionarioBO();
+    const id = funcionarioData.id;
+
+    const resultado = await funcionarioBO.excluir(id);
+
+    if (resultado) {
+
+      res.status(201).json({ message: "Funcionário exclúido com sucesso!" });
+
+    } else {
+
+      res.status(409).json({ error: "Não é possível excluir este Funcionário." });
+      
+    }
+    
+  }
+
   async listarSelect(req: Request, res: Response){
 
     const funcionarioBO = new FuncionarioBO();

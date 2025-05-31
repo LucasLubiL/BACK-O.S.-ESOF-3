@@ -83,6 +83,73 @@ class UsuarioDAO {
          
     }
 
+    async atualizar(usuario: Usuario): Promise<boolean> {
+
+        try {
+
+            const query = `UPDATE usuario SET usuario = $1, senha = $2, idfunc = $3 WHERE iduser = $4`;
+            const values = [
+                usuario.usuario,
+                usuario.senha,
+                usuario.idFuncionario,
+                usuario.id
+            ];
+
+            console.log("Executando UPDATE com:", values);
+
+            await pool.query(query, values);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao atualizar usuário no banco:", error);
+            return false;
+        }
+        
+    }
+
+    async excluir(usuario: Usuario): Promise<boolean> {
+
+        try {
+
+            const query1 = `UPDATE funcionario SET usuario = false WHERE idfunc = $1`;
+            const query = `DELETE FROM usuario WHERE iduser = $1`;
+            const values = [
+                usuario.id
+            ]
+            const values1 = [
+                usuario.idFuncionario
+            ]
+
+            console.log("Executando DELETE com:", values);
+
+            await pool.query(query, values);
+            
+            await pool.query(query1, values1);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao excluir usuário no banco:", error);
+            return false;
+        }
+        
+    }
+
+    async listarSelect(){
+
+        try{
+
+            const query = `SELECT * FROM usuario ORDER BY iduser`;
+            const result = await pool.query(query);
+            return result.rows;
+
+        }catch (error) {
+            console.error("Erro ao buscar usuários no banco para o select do usuario:", error);
+            return false;
+        }
+    }
+
 }
 
 export default UsuarioDAO;

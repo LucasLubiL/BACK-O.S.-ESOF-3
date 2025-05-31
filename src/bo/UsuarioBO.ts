@@ -29,6 +29,24 @@ class UsuarioBO {
 
     }
 
+    async atualizar(usuario: Usuario): Promise<boolean> {
+
+        return await this.usuarioDAO.atualizar(usuario);
+      
+    }
+
+    async excluir(usuario: Usuario): Promise<boolean> {
+
+        return await this.usuarioDAO.excluir(usuario);
+      
+    }
+
+    async listarSelect(){
+
+        return await this.usuarioDAO.listarSelect();
+        
+    }
+
 }
 
 export default UsuarioBO;

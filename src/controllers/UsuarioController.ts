@@ -42,8 +42,70 @@ class UsuarioController {
 
         }else {
 
-            res.status(201).json({ message: "Erro ao cadastrar Usuário" });
+            res.status(409).json({ message: "Erro ao cadastrar Usuário" });
             
+        }
+
+    }
+
+    async atualizar(req: Request, res: Response) {
+
+        const usuarioData = req.body;
+        const usuarioBO = new UsuarioBO();
+        const usuario = new Usuario(
+            usuarioData.id,
+            usuarioData.usuario,
+            usuarioData.senha,
+            usuarioData.idfunc
+        );
+
+        const resultado = await usuarioBO.atualizar(usuario);
+
+        if (resultado) {
+
+        res.status(201).json({ message: "Usuário atualizado com sucesso!" });
+
+        } else {
+
+        res.status(400).json({ error: "Não é possível atualizar este usuário." });
+        
+        }
+        
+    }
+
+    async excluir(req: Request, res: Response) {
+
+        const usuarioData = req.body;
+        const usuarioBO = new UsuarioBO();
+        const usuario = new Usuario();
+        usuario.id = usuarioData.id;
+        usuario.idFuncionario = usuarioData.idfunc;
+        
+
+        const resultado = await usuarioBO.excluir(usuario);
+
+        if (resultado) {
+
+        res.status(201).json({ message: "Usuário exclúido com sucesso!" });
+
+        } else {
+
+        res.status(409).json({ error: "Não é possível excluir este Usuário." });
+        
+        }
+        
+    }
+
+    async listarSelect(req: Request, res: Response){
+
+        const usuarioBO = new UsuarioBO();
+
+        const usuarios = await usuarioBO.listarSelect();
+
+        if (usuarios) {
+        res.status(200).json(usuarios);
+        }else {
+        res.status(500).json({ error: "Erro ao listar usuários" });
         }
 
     }

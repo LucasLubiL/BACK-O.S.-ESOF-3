@@ -35,6 +35,49 @@ class PagamentoDAO {
 
     }
 
+    async atualizar(pagamento: Pagamento): Promise<boolean> {
+
+        try {
+
+            const query = `UPDATE pagamento SET nome = $1 WHERE idpag = $2`;
+            const values = [
+                pagamento.nome,
+                pagamento.id
+            ];
+
+            console.log("Executando UPDATE com:", values);
+
+            await pool.query(query, values);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao atualizar pagamento no banco:", error);
+            return false;
+        }
+        
+    }
+
+    async excluir(idpag: number): Promise<boolean> {
+
+        try {
+
+           
+            const query = `DELETE FROM pagamento WHERE idpag = $1`;
+
+            console.log("Executando DELETE com:", idpag);
+
+            await pool.query(query, [idpag]);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao excluir pagamento no banco:", error);
+            return false;
+        }
+        
+    }
+
     async verificar(pagamento: string): Promise<boolean> {
 
         try{
@@ -56,7 +99,7 @@ class PagamentoDAO {
 
         try{
 
-            const query = `SELECT idpag, nome FROM pagamento ORDER BY idpag`;
+            const query = `SELECT * FROM pagamento ORDER BY idpag`;
             const result = await pool.query(query);
             return result.rows;
 

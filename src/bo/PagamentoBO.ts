@@ -23,8 +23,22 @@ class PagamentoBO {
 
     }
 
+    async atualizar(pagamento: Pagamento): Promise<boolean> {
+
+        return await this.pagamentoDAO.atualizar(pagamento);
+      
+    }
+
+    async excluir(idpag: number): Promise<boolean> {
+
+        return await this.pagamentoDAO.excluir(idpag);
+      
+    }
+
     async listarSelect(){
+
       return await this.pagamentoDAO.listarSelect();
+
     }
 
 }
