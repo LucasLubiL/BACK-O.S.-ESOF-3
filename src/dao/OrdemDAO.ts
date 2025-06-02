@@ -40,6 +40,20 @@ class OrdemDAO {
         }
         
     }
+
+    async listarSelect(){
+
+        try{
+
+            const query = `SELECT * FROM ordem ORDER BY idord`;
+            const result = await pool.query(query);
+            return result.rows;
+
+        }catch (error) {
+            console.error("Erro ao buscar O.S. no banco:", error);
+            return false;
+        }
+    }
         
 }
 

@@ -17,6 +17,12 @@ class OrdemBO {
 
     }
 
+    async listarSelect(){
+
+      return await this.ordemDAO.listarSelect();
+      
+    }
+
 }
 
 export default OrdemBO;

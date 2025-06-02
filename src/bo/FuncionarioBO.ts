@@ -36,7 +36,9 @@ class FuncionarioBO {
     }
 
     async listarSelect(){
+
       return await this.funcionarioDAO.listarSelect();
+      
     }
 
 }

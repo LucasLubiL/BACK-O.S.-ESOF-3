@@ -35,6 +35,20 @@ class OrdemController {
     
   }
 
+  async listarSelect(req: Request, res: Response){
+
+    const ordemBO = new OrdemBO();
+
+    const ordem = await ordemBO.listarSelect();
+
+    if (ordem) {
+       res.status(200).json(ordem);
+    }else {
+       res.status(500).json({ error: "Erro ao listar O.S." });
+    }
+
+  }
+
 }
 
 export default OrdemController;
