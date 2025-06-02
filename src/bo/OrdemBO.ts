@@ -17,6 +17,24 @@ class OrdemBO {
 
     }
 
+    async finalizarOrdem(ordem: Ordem): Promise<boolean> {
+
+      return await this.ordemDAO.finalizarOrdem(ordem);
+      
+    }
+
+    async enviarOrdem(ordem: Ordem): Promise<boolean> {
+
+      return await this.ordemDAO.enviarOrdem(ordem);
+      
+    }
+
+    async cancelarOrdem(idord: number): Promise<boolean> {
+
+      return await this.ordemDAO.cancelarOrdem(idord);
+      
+    }
+
     async listarSelect(){
 
       return await this.ordemDAO.listarSelect();

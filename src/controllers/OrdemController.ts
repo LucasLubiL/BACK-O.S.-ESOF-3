@@ -35,6 +35,74 @@ class OrdemController {
     
   }
 
+  async finalizarOrdem(req: Request, res: Response) {
+
+    const ordemData = req.body;
+    const ordemBO = new OrdemBO();
+    const ordem = new Ordem();
+    ordem.id = ordemData.idord;
+    ordem.idPag = ordemData.pagamento;
+    ordem.description = ordemData.descricao;
+    ordem.valor = ordemData.valor;
+
+    const resultado = await ordemBO.finalizarOrdem(ordem);
+
+    if (resultado) {
+
+      res.status(201).json({ message: "Ordem finalizada com sucesso!" });
+
+    } else {
+
+      res.status(400).json({ error: "Não é possível finalizar a O.S.." });
+      
+    }
+    
+  }
+
+  async enviarOrdem(req: Request, res: Response) {
+
+    const ordemData = req.body;
+    const ordemBO = new OrdemBO();
+    const ordem = new Ordem();
+    ordem.id = ordemData.idord;
+    ordem.idPag = ordemData.pagamento;
+    ordem.msgDev = ordemData.msg_dev;
+    ordem.valor = ordemData.valor;
+
+    const resultado = await ordemBO.enviarOrdem(ordem);
+
+    if (resultado) {
+
+      res.status(201).json({ message: "Ordem enviada com sucesso!" });
+
+    } else {
+
+      res.status(400).json({ error: "Não é possível enviar a O.S.." });
+      
+    }
+    
+  }
+
+  async cancelarOrdem(req: Request, res: Response) {
+
+    const ordemData = req.body;
+    const ordemBO = new OrdemBO();
+    const idord = ordemData.idord;
+
+    const resultado = await ordemBO.cancelarOrdem(idord);
+
+    if (resultado) {
+
+      res.status(201).json({ message: "Ordem cancelada com sucesso!" });
+
+    } else {
+
+      res.status(409).json({ error: "Não é possível cancelar esta ordem." });
+      
+    }
+    
+  }
+
   async listarSelect(req: Request, res: Response){
 
     const ordemBO = new OrdemBO();

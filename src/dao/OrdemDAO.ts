@@ -41,6 +41,78 @@ class OrdemDAO {
         
     }
 
+    async finalizarOrdem(ordem: Ordem): Promise<boolean> {
+
+        try {
+
+            const query = `UPDATE ordem SET status = 1, status_char = 'Finalizado', idpag = $1, valor = $2, description = $3, ord_data_final = NOW() WHERE idord = $4`;
+            const values = [
+                ordem.idPag,
+                ordem.valor,
+                ordem.description,
+                ordem.id    
+            ];
+
+            console.log("Executando UPDATE com:", values);
+
+            await pool.query(query, values);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao finalizar O.S. no banco:", error);
+            return false;
+        }
+        
+    }
+
+    async enviarOrdem(ordem: Ordem): Promise<boolean> {
+
+        try {
+
+            const query = `UPDATE ordem SET idpag = $1, valor = $2, msg_dev = $3, dev = 1 WHERE idord = $4`;
+            const values = [
+                ordem.idPag,
+                ordem.valor,
+                ordem.msgDev,
+                ordem.id    
+            ];
+
+            console.log("Executando UPDATE com:", values);
+
+            await pool.query(query, values);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao enviar O.S. no banco:", error);
+            return false;
+        }
+        
+    }
+
+    async cancelarOrdem(idord: number): Promise<boolean> {
+
+        try {
+
+            const query = `UPDATE ordem SET status = 2, status_char = 'Cancelado' WHERE idord = $1`;
+            const values = [
+                idord
+            ];
+
+            console.log("Executando UPDATE com:", values);
+
+            await pool.query(query, values);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao cancelar a ordem no banco:", error);
+            return false;
+        }
+        
+    }
+
     async listarSelect(){
 
         try{
