@@ -109,6 +109,20 @@ class PagamentoDAO {
         }
     }
 
+    async pagamentoRegistro(){
+
+        try{
+
+            const query = `SELECT * FROM pagamento ORDER BY idpag`;
+            const result = await pool.query(query);
+            return result.rows;
+
+        }catch (error) {
+            console.error("Erro ao buscar forma de pagamento no banco para o registro de pagamento:", error);
+            return false;
+        }
+    }
+
 }
 
 export default PagamentoDAO;

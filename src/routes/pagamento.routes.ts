@@ -13,4 +13,6 @@ router.post("/excluirPagamento", pagamentoController.excluir);
 
 router.get("/select", pagamentoController.listarSelect);
 
+router.get("/pagamentoRegistro", pagamentoController.pagamentoRegistro);
+
 export default router;

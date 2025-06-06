@@ -7,6 +7,7 @@ import clienteRoutes from './routes/cliente.routes';
 import pagamentoRoutes from './routes/pagamento.routes';
 import servicoRoutes from './routes/servico.routes';
 import ordemRoutes from './routes/ordem.routes';
+import receberRoutes from './routes/receber.routes';
 import client from './config/database';
 
 console.log("✅ Servidor carregado corretamente");
@@ -50,6 +51,7 @@ app.use('/cliente', clienteRoutes);
 app.use('/pagamento', pagamentoRoutes);
 app.use('/servico', servicoRoutes);
 app.use('/ordem', ordemRoutes);
+app.use('/receber', receberRoutes);
 
 app.get('/testeee', (req: Request, res: Response) => {
   res.send('Servidor está funcionando!');

@@ -36,7 +36,15 @@ class ClienteBO {
    }
    
    async listarSelect(){
+
       return await this.clienteDAO.listarSelect();
+
+   }
+
+   async clienteRegistro(){
+
+      return await this.clienteDAO.clienteRegistro();
+
    }
 
 }

@@ -83,6 +83,20 @@ class PagamentoController {
 
   }
 
+  async pagamentoRegistro(req: Request, res: Response){
+
+    const pagamentoBO = new PagamentoBO();
+
+    const pagamentos = await pagamentoBO.pagamentoRegistro();
+
+    if (pagamentos) {
+       res.status(200).json(pagamentos);
+    }else {
+       res.status(500).json({ error: "Erro ao listar pagamentos" });
+    }
+
+  }
+
 }
 
 export default PagamentoController;

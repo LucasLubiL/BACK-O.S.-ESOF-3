@@ -93,6 +93,20 @@ class ClienteController {
 
   }
 
+  async clienteRegistro(req: Request, res: Response){
+
+    const clienteBO = new ClienteBO();
+
+    const clientes = await clienteBO.clienteRegistro();
+
+    if (clientes) {
+       res.status(200).json(clientes);
+    }else {
+       res.status(500).json({ error: "Erro ao listar clientes" });
+    }
+
+  }
+
 }
 
 export default ClienteController;

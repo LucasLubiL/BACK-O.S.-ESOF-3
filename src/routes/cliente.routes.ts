@@ -13,4 +13,6 @@ router.post("/excluirCliente", clienteController.excluir);
 
 router.get("/select", clienteController.listarSelect);
 
+router.get("/clienteReceber", clienteController.clienteRegistro);
+
 export default router;

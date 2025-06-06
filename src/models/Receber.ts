@@ -1,14 +1,14 @@
 class Receber{
 
-    private _id: number;
-    private _status: string
-    private _valor: number;
-    private _recData: Date;
-    private _idOrd: number;
-    private _idPag: number;
-    private _idCliente: number;
+    private _id?: number;
+    private _status?: string
+    private _valor?: number;
+    private _recData?: Date;
+    private _idOrd?: number;
+    private _idPag?: number;
+    private _idCliente?: number;
 
-    constructor(id: number, status: string, valor: number, idPag: number, idCliente: number, idOrd: number, recData: Date){
+    constructor(id?: number, status?: string, valor?: number, idPag?: number, idCliente?: number, idOrd?: number, recData?: Date){
         this._id = id;
         this._status = status;
         this._valor = valor;
@@ -18,7 +18,7 @@ class Receber{
         this._recData = recData;
     }
 
-    public get id(): number{
+    public get id(): number | undefined{
         return this._id;
     }
 
@@ -26,7 +26,7 @@ class Receber{
         this._id = id;
     }
 
-    public get status(): string{
+    public get status(): string | undefined{
         return this._status;
     }
 
@@ -34,7 +34,7 @@ class Receber{
         this._status = status;
     }
 
-    public get valor(): number{
+    public get valor(): number | undefined{
         return this._valor;
     }
 
@@ -42,7 +42,7 @@ class Receber{
         this._valor = valor;
     }
 
-    public get recData(): Date{
+    public get recData(): Date | undefined{
         return this._recData;
     }
 
@@ -50,7 +50,7 @@ class Receber{
         this._recData = recData;
     }
 
-    public get idOrd(): number{
+    public get idOrd(): number | undefined{
         return this._idOrd;
     }
 
@@ -58,7 +58,7 @@ class Receber{
         this._idOrd = idOrd;
     }
 
-    public get idPag(): number{
+    public get idPag(): number | undefined{
         return this._idPag;
     }
 
@@ -66,7 +66,7 @@ class Receber{
         this._idPag = idPag;
     }
 
-    public get idCliente(): number {
+    public get idCliente(): number | undefined{
         return this._idCliente;
     }
 

@@ -41,6 +41,12 @@ class PagamentoBO {
 
     }
 
+    async pagamentoRegistro(){
+
+      return await this.pagamentoDAO.pagamentoRegistro();
+
+    }
+
 }
 
 export default PagamentoBO;

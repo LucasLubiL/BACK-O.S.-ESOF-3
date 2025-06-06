@@ -121,6 +121,20 @@ class ClienteDAO {
         }
     }
 
+    async clienteRegistro(){
+
+        try{
+
+            const query = `SELECT * FROM cliente ORDER BY idcliente`;
+            const result = await pool.query(query);
+            return result.rows;
+
+        }catch (error) {
+            console.error("Erro ao buscar cliente no banco para o registro da pagamento:", error);
+            return false;
+        }
+    }
+
 }
 
 export default ClienteDAO;
