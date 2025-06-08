@@ -24,11 +24,12 @@ class ClienteDAO {
 
         try {
 
+            const dataFormatada = new Date(cliente.data_nascimento).toISOString().split('T')[0];
             const query = `INSERT INTO cliente (nome, cpf, data_nascimento, endereco, cidade, estado)VALUES ($1, $2, $3, $4, $5, $6) RETURNING idcliente`;
             const values = [
                 cliente.nome,
                 cliente.cpf,
-                cliente.data_nascimento,
+                dataFormatada,
                 cliente.endereco,
                 cliente.cidade,
                 cliente.estado
@@ -61,11 +62,12 @@ class ClienteDAO {
 
         try {
 
+            const dataFormatada = new Date(cliente.data_nascimento).toISOString().split('T')[0];
             const query = `UPDATE cliente SET nome = $1, cpf = $2, data_nascimento = $3, endereco = $4, cidade = $5, estado = $6 WHERE idcliente = $7`;
             const values = [
                 cliente.nome,
                 cliente.cpf,
-                cliente.data_nascimento,
+                dataFormatada,
                 cliente.endereco,
                 cliente.cidade,
                 cliente.estado,

@@ -25,11 +25,12 @@ class FuncionarioDAO {
 
         try {
 
+            const dataFormatada = new Date(funcionario.data_nascimento).toISOString().split('T')[0];
             const query = `INSERT INTO funcionario (nome, cpf, data_nascimento, funcao, salario, endereco, cidade, estado)VALUES ($1, $2, $3, $4, $5, $6, $7, $8) RETURNING idfunc`;
             const values = [
                 funcionario.nome,
                 funcionario.cpf,
-                funcionario.data_nascimento,
+                dataFormatada,
                 funcionario.funcao,
                 funcionario.salario,
                 funcionario.endereco,
@@ -64,11 +65,12 @@ class FuncionarioDAO {
 
         try {
 
+            const dataFormatada = new Date(funcionario.data_nascimento).toISOString().split('T')[0];
             const query = `UPDATE funcionario SET nome = $1, cpf = $2, data_nascimento = $3, endereco = $4, cidade = $5, estado = $6, funcao = $7, salario = $8 WHERE idfunc = $9`;
             const values = [
                 funcionario.nome,
                 funcionario.cpf,
-                funcionario.data_nascimento,
+                dataFormatada,
                 funcionario.endereco,
                 funcionario.cidade,
                 funcionario.estado,

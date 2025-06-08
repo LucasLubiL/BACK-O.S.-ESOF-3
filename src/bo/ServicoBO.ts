@@ -21,7 +21,6 @@ class ServicoBO {
       
       return await this.servicoDAO.cadastrar(servico);
 
-
     }
 
     async atualizar(servico: Servico): Promise<boolean> {

@@ -81,7 +81,7 @@ class ServicoDAO {
 
         try{
 
-            const query = `SELECT * FROM servico WHERE nome ILIKE $1`;
+            const query = `SELECT * FROM servico WHERE nome_service ILIKE $1`;
 
             const result = await pool.query(query, [servico]);
 
