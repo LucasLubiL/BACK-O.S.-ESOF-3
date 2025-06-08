@@ -117,6 +117,38 @@ class OrdemController {
 
   }
 
+  async relato(req: Request, res: Response){
+
+    const ordemBO = new OrdemBO();
+
+    const ordem = await ordemBO.relato();
+
+    if (ordem) {
+       res.status(200).json(ordem);
+    }else {
+       res.status(500).json({ error: "Erro ao listar relato" });
+    }
+
+  }
+
+  async finalizar(req: Request, res: Response){
+
+    const ordemData = req.body;
+    const ordemBO = new OrdemBO();
+    const relato = new Ordem();
+    relato.id = ordemData.idord;
+    relato.description = ordemData.description;
+
+    const ordem = await ordemBO.finalizar(relato);
+
+    if (ordem) {
+       res.status(200).json(ordem);
+    }else {
+       res.status(500).json({ error: "Erro ao finalizar relato" });
+    }
+
+  }
+
 }
 
 export default OrdemController;

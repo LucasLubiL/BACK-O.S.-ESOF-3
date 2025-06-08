@@ -41,6 +41,18 @@ class OrdemBO {
       
     }
 
+    async relato(){
+
+      return await this.ordemDAO.relato();
+      
+    }
+
+    async finalizar(relato: Ordem){
+
+      return await this.ordemDAO.finalizar(relato);
+      
+    }
+
 }
 
 export default OrdemBO;

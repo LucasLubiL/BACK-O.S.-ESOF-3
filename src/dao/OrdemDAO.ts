@@ -126,6 +126,43 @@ class OrdemDAO {
             return false;
         }
     }
+
+    async relato(){
+
+        try{
+
+            const query = `SELECT * FROM ordem WHERE dev = 1`;
+            const result = await pool.query(query);
+            return result.rows;
+
+        }catch (error) {
+            console.error("Erro ao buscar O.S. no banco:", error);
+            return false;
+        }
+    }
+
+    async finalizar(relato: Ordem): Promise<boolean> {
+
+        try {
+
+            const query = `UPDATE ordem SET status = 1, status_char = 'Finalizado', dev = 0, description = $1, ord_data_final = NOW() WHERE idord = $2`;
+            const values = [
+                relato.description,
+                relato.id
+            ];
+
+            console.log("Executando UPDATE com:", values);
+
+            await pool.query(query, values);
+
+            return true
+
+        } catch (error) {
+            console.error("Erro ao finalizar O.S. no banco:", error);
+            return false;
+        }
+        
+    }
         
 }
 

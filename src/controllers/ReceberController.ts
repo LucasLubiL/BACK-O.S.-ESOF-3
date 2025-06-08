@@ -16,7 +16,6 @@ class ReceberController {
     receber.valor = receberData.valor;
     receber.idPag = receberData.pagamento;
     receber.idCliente = receberData.cliente;
-    receber.idCliente = receberData.cliente;
     receber.idOrd = receberData.idord;
 
     const resultado = await receberBO.criarRegistro(receber);

@@ -15,4 +15,8 @@ router.post("/cancelarOrdem", ordemController.cancelarOrdem);
 
 router.get("/selectOrdem", ordemController.listarSelect);
 
+router.get("/relatoOS", ordemController.relato);
+
+router.post("/finalizarRelato", ordemController.finalizar);
+
 export default router;

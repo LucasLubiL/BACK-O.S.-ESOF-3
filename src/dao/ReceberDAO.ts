@@ -22,7 +22,7 @@ class ReceberDAO {
 
             if (result && result.rows && result.rows[0]) {
 
-                console.log(`Registro criado com sucesso! ID: ${result.rows[0].idord}`);
+                console.log(`Registro criado com sucesso! ID: ${result.rows[0].idrec}`);
                 return true;
 
             } else {
